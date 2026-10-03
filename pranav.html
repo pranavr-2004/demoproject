@@ -1,0 +1,454 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pranav Is Vanam</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #02010a;
+            color: white;
+        }
+
+        /* Animated background */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, #5b21b6 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, #0891b2 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, #111827 0%, #02010a 70%);
+            animation: backgroundMove 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                transform: scale(1.15);
+
+            position: fixed;
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) scale(2);
+            transform-origin: center bottom;
+            opacity: 0.4;
+            animation: gridMove 8s linear infinite;
+        }
+
+        @keyframes gridMove {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 50px;
+            }
+        }
+
+        /* Main */
+
+        .main {
+            position: relative;
+            z-index: 5;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            perspective: 1000px;
+        }
+
+        .content {
+            padding: 70px 90px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 0 50px rgba(139,92,246,0.25),
+                inset 0 0 40px rgba(255,255,255,0.03);
+
+            animation: appear 1.5s ease forwards,
+                       floating 5s ease-in-out infinite 1.5s;
+
+            transform-style: preserve-3d;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(80px) rotateX(25deg) scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0) scale(1);
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Small heading */
+
+        .small {
+            font-size: 14px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #a78bfa;
+
+            margin-bottom: 25px;
+
+            animation: fadeIn 2s ease;
+        }
+
+        /* Main text */
+
+        h1 {
+            font-size: clamp(55px, 9vw, 130px);
+            font-weight: 900;
+            line-height: 0.9;
+
+            letter-spacing: -6px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #a78bfa,
+                #22d3ee,
+                #ffffff
+            );
+
+            background-size: 300% auto;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            animation:
+                gradientText 5s linear infinite,
+                textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientText {
+            from {
+                background-position: 0% center;
+            }
+
+            to {
+                background-position: 300% center;
+            }
+        }
+
+        @keyframes textGlow {
+            from {
+                filter: drop-shadow(0 0 5px #8b5cf6);
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px #22d3ee);
+            }
+        }
+
+        .subtitle {
+            margin-top: 35px;
+            font-size: 18px;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+
+            animation: fadeIn 3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Button */
+
+        .button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 35px;
+
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.08);
+
+            transition: 0.4s;
+
+            overflow: hidden;
+            position: relative;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 20px #8b5cf6,
+                0 0 50px #22d3ee;
+        }
+
+        /* Particles */
+
+        .particle {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 10px white,
+                0 0 20px #8b5cf6;
+
+            animation: particleMove linear infinite;
+        }
+
+        @keyframes particleMove {
+            from {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* Decorative circles */
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(2px);
+        }
+
+        .orb.one {
+            width: 200px;
+            height: 200px;
+            background: #7c3aed;
+            opacity: 0.15;
+            top: 10%;
+            left: 10%;
+            animation: orbOne 7s infinite alternate;
+        }
+
+        .orb.two {
+            width: 250px;
+            height: 250px;
+            background: #06b6d4;
+            opacity: 0.12;
+            bottom: 5%;
+            right: 10%;
+            animation: orbTwo 9s infinite alternate;
+        }
+
+        @keyframes orbOne {
+            to {
+                transform: translate(200px, 150px) scale(1.5);
+            }
+        }
+
+        @keyframes orbTwo {
+            to {
+                transform: translate(-180px, -100px) scale(1.3);
+            }
+        }
+
+        /* Mobile */
+
+        @media(max-width: 600px) {
+
+            .content {
+                padding: 50px 25px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="grid"></div>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <!-- Floating particles -->
+
+    <div class="particle" style="left:5%; animation-duration:8s;"></div>
+    <div class="particle" style="left:12%; animation-duration:12s;"></div>
+    <div class="particle" style="left:20%; animation-duration:7s;"></div>
+    <div class="particle" style="left:28%; animation-duration:10s;"></div>
+    <div class="particle" style="left:36%; animation-duration:14s;"></div>
+    <div class="particle" style="left:45%; animation-duration:9s;"></div>
+    <div class="particle" style="left:54%; animation-duration:11s;"></div>
+    <div class="particle" style="left:63%; animation-duration:8s;"></div>
+    <div class="particle" style="left:72%; animation-duration:13s;"></div>
+    <div class="particle" style="left:82%; animation-duration:9s;"></div>
+    <div class="particle" style="left:91%; animation-duration:15s;"></div>
+
+    <main class="main">
+
+        <div class="content" id="card">
+
+            <div class="small">
+                The Legend
+            </div>
+
+            <h1>
+                PRANAV<br>
+                IS VANAM
+            </h1>
+
+            <div class="subtitle">
+                Not a person. &nbsp; An experience.
+            </div>
+
+            <a href="#" class="button" onclick="celebrate()">
+                ENTER THE VANAM ✦
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* 3D mouse movement */
+
+        const card = document.getElementById("card");
+
+        document.addEventListener("mousemove", (e) => {
+
+            const x = (window.innerWidth / 2 - e.clientX) / 35;
+            const y = (window.innerHeight / 2 - e.clientY) / 35;
+
+            card.style.transform =
+                `rotateY(${x}deg) rotateX(${y}deg)`;
+
+        });
+
+
+        /* Button effect */
+
+        function celebrate() {
+
+            for(let i = 0; i < 40; i++) {
+
+                const particle = document.createElement("div");
+
+                particle.style.position = "fixed";
+                particle.style.left = "50%";
+                particle.style.top = "50%";
+
+                particle.style.width = "6px";
+                particle.style.height = "6px";
+                particle.style.borderRadius = "50%";
+
+                particle.style.background = "white";
+                particle.style.boxShadow =
+                    "0 0 15px #8b5cf6";
+
+                particle.style.zIndex = "100";
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 400 + 100;
+
+                particle.animate([
+                    {
+                        transform: "translate(-50%, -50%) scale(1)",
+                        opacity: 1
+                    },
+                    {
+                        transform:
+                            `translate(
+                                ${Math.cos(angle) * distance}px,
+                                ${Math.sin(angle) * distance}px
+                            ) scale(0)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1200,
+                    easing: "cubic-bezier(.2,.8,.2,1)"
+                });
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 1300);
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-image:
+            inset: 0;
+        .grid {
+        /* Grid */
+
