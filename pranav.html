@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pranav Is Vanam</title>
+    <title>PRANAV — The Vanam</title>
 
     <style>
         * {
@@ -22,19 +22,36 @@
             color: white;
         }
 
-        /* Animated background */
+        /* =========================================
+           ANIMATED BACKGROUND
+        ========================================= */
 
         .background {
             position: fixed;
             inset: 0;
+
             background:
-                radial-gradient(circle at 20% 30%, #5b21b6 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, #0891b2 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, #111827 0%, #02010a 70%);
+                radial-gradient(
+                    circle at 20% 30%,
+                    #5b21b6 0%,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    #0891b2 0%,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 50%,
+                    #111827 0%,
+                    #02010a 70%
+                );
+
             animation: backgroundMove 10s ease-in-out infinite alternate;
         }
 
         @keyframes backgroundMove {
+
             0% {
                 transform: scale(1);
                 filter: hue-rotate(0deg);
@@ -42,16 +59,46 @@
 
             100% {
                 transform: scale(1.15);
+                filter: hue-rotate(40deg);
+            }
+        }
 
+
+        /* =========================================
+           MOVING GRID
+        ========================================= */
+
+        .grid {
             position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.035) 1px,
+                    transparent 1px
+                );
+
             background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg) scale(2);
+
+            transform:
+                perspective(500px)
+                rotateX(60deg)
+                scale(2);
+
             transform-origin: center bottom;
+
             opacity: 0.4;
+
             animation: gridMove 8s linear infinite;
         }
 
         @keyframes gridMove {
+
             from {
                 background-position: 0 0;
             }
@@ -61,176 +108,78 @@
             }
         }
 
-        /* Main */
 
-        .main {
-            position: relative;
-            z-index: 5;
-            height: 100vh;
+        /* =========================================
+           GLOWING ORBS
+        ========================================= */
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-
-            perspective: 1000px;
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(2px);
         }
 
-        .content {
-            padding: 70px 90px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 30px;
+        .orb.one {
 
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(25px);
+            width: 220px;
+            height: 220px;
 
-            box-shadow:
-                0 0 50px rgba(139,92,246,0.25),
-                inset 0 0 40px rgba(255,255,255,0.03);
+            background: #7c3aed;
 
-            animation: appear 1.5s ease forwards,
-                       floating 5s ease-in-out infinite 1.5s;
+            opacity: 0.15;
 
-            transform-style: preserve-3d;
+            top: 10%;
+            left: 10%;
+
+            animation: orbOne 7s infinite alternate;
         }
 
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(80px) rotateX(25deg) scale(0.8);
-            }
+        .orb.two {
+
+            width: 280px;
+            height: 280px;
+
+            background: #06b6d4;
+
+            opacity: 0.12;
+
+            bottom: 5%;
+            right: 10%;
+
+            animation: orbTwo 9s infinite alternate;
+        }
+
+        @keyframes orbOne {
 
             to {
-                opacity: 1;
-                transform: translateY(0) rotateX(0) scale(1);
+                transform:
+                    translate(200px, 150px)
+                    scale(1.5);
             }
         }
 
-        @keyframes floating {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        /* Small heading */
-
-        .small {
-            font-size: 14px;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: #a78bfa;
-
-            margin-bottom: 25px;
-
-            animation: fadeIn 2s ease;
-        }
-
-        /* Main text */
-
-        h1 {
-            font-size: clamp(55px, 9vw, 130px);
-            font-weight: 900;
-            line-height: 0.9;
-
-            letter-spacing: -6px;
-
-            background: linear-gradient(
-                90deg,
-                #ffffff,
-                #a78bfa,
-                #22d3ee,
-                #ffffff
-            );
-
-            background-size: 300% auto;
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-
-            animation:
-                gradientText 5s linear infinite,
-                textGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes gradientText {
-            from {
-                background-position: 0% center;
-            }
+        @keyframes orbTwo {
 
             to {
-                background-position: 300% center;
+                transform:
+                    translate(-180px, -100px)
+                    scale(1.3);
             }
         }
 
-        @keyframes textGlow {
-            from {
-                filter: drop-shadow(0 0 5px #8b5cf6);
-            }
 
-            to {
-                filter: drop-shadow(0 0 30px #22d3ee);
-            }
-        }
-
-        .subtitle {
-            margin-top: 35px;
-            font-size: 18px;
-            letter-spacing: 5px;
-            color: rgba(255,255,255,0.65);
-            text-transform: uppercase;
-
-            animation: fadeIn 3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Button */
-
-        .button {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 15px 35px;
-
-            color: white;
-            text-decoration: none;
-
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-
-            background: rgba(255,255,255,0.08);
-
-            transition: 0.4s;
-
-            overflow: hidden;
-            position: relative;
-        }
-
-        .button:hover {
-            transform: scale(1.1);
-            box-shadow:
-                0 0 20px #8b5cf6,
-                0 0 50px #22d3ee;
-        }
-
-        /* Particles */
+        /* =========================================
+           PARTICLES
+        ========================================= */
 
         .particle {
+
             position: fixed;
+
             width: 5px;
             height: 5px;
+
             border-radius: 50%;
 
             background: white;
@@ -239,10 +188,12 @@
                 0 0 10px white,
                 0 0 20px #8b5cf6;
 
-            animation: particleMove linear infinite;
+            animation:
+                particleMove linear infinite;
         }
 
         @keyframes particleMove {
+
             from {
                 transform: translateY(110vh);
                 opacity: 0;
@@ -262,110 +213,593 @@
             }
         }
 
-        /* Decorative circles */
 
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            filter: blur(2px);
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+
+        .main {
+
+            position: relative;
+
+            z-index: 5;
+
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            perspective: 1000px;
         }
 
-        .orb.one {
-            width: 200px;
-            height: 200px;
-            background: #7c3aed;
-            opacity: 0.15;
-            top: 10%;
-            left: 10%;
-            animation: orbOne 7s infinite alternate;
+
+        /* =========================================
+           GLASS CARD
+        ========================================= */
+
+        .content {
+
+            padding: 60px 80px;
+
+            max-width: 850px;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            backdrop-filter: blur(25px);
+
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow:
+
+                0 0 50px
+                rgba(139,92,246,0.25),
+
+                inset 0 0 40px
+                rgba(255,255,255,0.03);
+
+            animation:
+                appear 1.5s ease forwards;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.15s ease-out;
         }
 
-        .orb.two {
-            width: 250px;
-            height: 250px;
-            background: #06b6d4;
-            opacity: 0.12;
-            bottom: 5%;
-            right: 10%;
-            animation: orbTwo 9s infinite alternate;
-        }
+        @keyframes appear {
 
-        @keyframes orbOne {
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(80px)
+                    rotateX(25deg)
+                    scale(0.8);
+            }
+
             to {
-                transform: translate(200px, 150px) scale(1.5);
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    rotateX(0)
+                    scale(1);
             }
         }
 
-        @keyframes orbTwo {
+
+        /* =========================================
+           SMALL TITLE
+        ========================================= */
+
+        .small {
+
+            font-size: 14px;
+
+            letter-spacing: 8px;
+
+            text-transform: uppercase;
+
+            color: #a78bfa;
+
+            margin-bottom: 25px;
+
+            animation: fadeIn 2s ease;
+        }
+
+
+        /* =========================================
+           MAIN NAME
+        ========================================= */
+
+        h1 {
+
+            font-size:
+                clamp(65px, 11vw, 150px);
+
+            font-weight: 900;
+
+            line-height: 0.9;
+
+            letter-spacing: -7px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #a78bfa,
+                    #22d3ee,
+                    #ffffff
+                );
+
+            background-size: 300% auto;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            animation:
+
+                gradientText 5s linear infinite,
+
+                textGlow
+                2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientText {
+
+            from {
+                background-position: 0% center;
+            }
+
             to {
-                transform: translate(-180px, -100px) scale(1.3);
+                background-position: 300% center;
             }
         }
 
-        /* Mobile */
+        @keyframes textGlow {
+
+            from {
+
+                filter:
+                    drop-shadow(
+                        0 0 5px #8b5cf6
+                    );
+            }
+
+            to {
+
+                filter:
+                    drop-shadow(
+                        0 0 30px #22d3ee
+                    );
+            }
+        }
+
+
+        /* =========================================
+           TYPING TEXT
+        ========================================= */
+
+        .subtitle {
+
+            margin-top: 30px;
+
+            font-size: 18px;
+
+            letter-spacing: 5px;
+
+            color:
+                rgba(255,255,255,0.7);
+
+            text-transform: uppercase;
+
+            min-height: 25px;
+        }
+
+        #typing {
+
+            color: #22d3ee;
+
+            border-right:
+                2px solid #22d3ee;
+
+            padding-right: 6px;
+
+            animation:
+                cursorBlink 0.7s infinite;
+        }
+
+        @keyframes cursorBlink {
+
+            50% {
+                border-color: transparent;
+            }
+        }
+
+
+        /* =========================================
+           BIO
+        ========================================= */
+
+        .bio {
+
+            margin-top: 28px;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.65);
+        }
+
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .stats {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 60px;
+
+            margin-top: 35px;
+        }
+
+        .stats div {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+        .stats strong {
+
+            font-size: 26px;
+
+            color: white;
+        }
+
+        .stats span {
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #a78bfa;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        .button {
+
+            display: inline-block;
+
+            margin-top: 40px;
+
+            padding:
+                15px 35px;
+
+            color: white;
+
+            text-decoration: none;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.3);
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            transition:
+                0.4s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .button::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.4),
+                    transparent
+                );
+
+            transition: 0.6s;
+        }
+
+        .button:hover::before {
+
+            left: 100%;
+        }
+
+        .button:hover {
+
+            transform:
+                scale(1.1);
+
+            box-shadow:
+
+                0 0 20px #8b5cf6,
+
+                0 0 50px #22d3ee;
+        }
+
+
+        /* =========================================
+           FADE IN
+        ========================================= */
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media(max-width: 600px) {
 
             .content {
-                padding: 50px 25px;
-                width: 90%;
+
+                width: 92%;
+
+                padding:
+                    50px 20px;
+
+                border-radius: 25px;
             }
 
             h1 {
-                font-size: 55px;
-                letter-spacing: -3px;
+
+                font-size: 65px;
+
+                letter-spacing:
+                    -4px;
+            }
+
+            .small {
+
+                font-size: 10px;
+
+                letter-spacing: 5px;
             }
 
             .subtitle {
+
                 font-size: 12px;
+
                 letter-spacing: 3px;
             }
+
+            .bio {
+
+                font-size: 14px;
+            }
+
+            .stats {
+
+                gap: 25px;
+            }
+
+            .stats strong {
+
+                font-size: 21px;
+            }
+
+            .stats span {
+
+                font-size: 8px;
+
+                letter-spacing: 2px;
+            }
+
+            .button {
+
+                padding:
+                    13px 25px;
+
+                font-size: 13px;
+            }
         }
+
     </style>
 </head>
 
+
 <body>
 
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================= -->
+
     <div class="background"></div>
+
     <div class="grid"></div>
 
     <div class="orb one"></div>
+
     <div class="orb two"></div>
 
-    <!-- Floating particles -->
 
-    <div class="particle" style="left:5%; animation-duration:8s;"></div>
-    <div class="particle" style="left:12%; animation-duration:12s;"></div>
-    <div class="particle" style="left:20%; animation-duration:7s;"></div>
-    <div class="particle" style="left:28%; animation-duration:10s;"></div>
-    <div class="particle" style="left:36%; animation-duration:14s;"></div>
-    <div class="particle" style="left:45%; animation-duration:9s;"></div>
-    <div class="particle" style="left:54%; animation-duration:11s;"></div>
-    <div class="particle" style="left:63%; animation-duration:8s;"></div>
-    <div class="particle" style="left:72%; animation-duration:13s;"></div>
-    <div class="particle" style="left:82%; animation-duration:9s;"></div>
-    <div class="particle" style="left:91%; animation-duration:15s;"></div>
+    <!-- =========================================
+         FLOATING PARTICLES
+    ========================================= -->
+
+    <div class="particle"
+         style="left:5%; animation-duration:8s;">
+    </div>
+
+    <div class="particle"
+         style="left:12%; animation-duration:12s;">
+    </div>
+
+    <div class="particle"
+         style="left:20%; animation-duration:7s;">
+    </div>
+
+    <div class="particle"
+         style="left:28%; animation-duration:10s;">
+    </div>
+
+    <div class="particle"
+         style="left:36%; animation-duration:14s;">
+    </div>
+
+    <div class="particle"
+         style="left:45%; animation-duration:9s;">
+    </div>
+
+    <div class="particle"
+         style="left:54%; animation-duration:11s;">
+    </div>
+
+    <div class="particle"
+         style="left:63%; animation-duration:8s;">
+    </div>
+
+    <div class="particle"
+         style="left:72%; animation-duration:13s;">
+    </div>
+
+    <div class="particle"
+         style="left:82%; animation-duration:9s;">
+    </div>
+
+    <div class="particle"
+         style="left:91%; animation-duration:15s;">
+    </div>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
 
     <main class="main">
 
         <div class="content" id="card">
 
             <div class="small">
-                The Legend
+                ✦ THE ONE & ONLY ✦
             </div>
+
 
             <h1>
-                PRANAV<br>
-                IS VANAM
+                PRANAV
             </h1>
 
+
             <div class="subtitle">
-                Not a person. &nbsp; An experience.
+
+                <span id="typing"></span>
+
             </div>
 
-            <a href="#" class="button" onclick="celebrate()">
-                ENTER THE VANAM ✦
+
+            <p class="bio">
+
+                A little chaos. A lot of dreams.<br>
+
+                Walking through life on his own terms.
+
+            </p>
+
+
+            <div class="stats">
+
+                <div>
+
+                    <strong>∞</strong>
+
+                    <span>
+                        Dreams
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>24/7</strong>
+
+                    <span>
+                        Vibes
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>01</strong>
+
+                    <span>
+                        Original
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="#"
+                class="button"
+                onclick="celebrate(); return false;"
+            >
+
+                DISCOVER PRANAV ✦
+
             </a>
 
         </div>
@@ -373,69 +807,272 @@
     </main>
 
 
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
     <script>
 
-        /* 3D mouse movement */
 
-        const card = document.getElementById("card");
+        /* =========================================
+           TYPING EFFECT
+        ========================================= */
 
-        document.addEventListener("mousemove", (e) => {
+        const words = [
 
-            const x = (window.innerWidth / 2 - e.clientX) / 35;
-            const y = (window.innerHeight / 2 - e.clientY) / 35;
+            "THE DREAMER",
 
-            card.style.transform =
-                `rotateY(${x}deg) rotateX(${y}deg)`;
+            "THE CHAOTIC ONE",
 
-        });
+            "THE VIBE",
+
+            "THE LEGEND",
+
+            "THE VANAM"
+
+        ];
 
 
-        /* Button effect */
+        let wordIndex = 0;
+
+        let charIndex = 0;
+
+        let deleting = false;
+
+
+        function typeEffect() {
+
+            const typing =
+                document.getElementById("typing");
+
+            const word =
+                words[wordIndex];
+
+
+            if (!deleting) {
+
+                typing.textContent =
+                    word.substring(
+                        0,
+                        charIndex + 1
+                    );
+
+                charIndex++;
+
+
+                if (charIndex === word.length) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        typeEffect,
+                        1500
+                    );
+
+                    return;
+                }
+
+            }
+
+            else {
+
+                typing.textContent =
+                    word.substring(
+                        0,
+                        charIndex - 1
+                    );
+
+                charIndex--;
+
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    wordIndex =
+                        (wordIndex + 1)
+                        % words.length;
+                }
+            }
+
+
+            setTimeout(
+
+                typeEffect,
+
+                deleting ? 60 : 100
+
+            );
+        }
+
+
+        typeEffect();
+
+
+
+        /* =========================================
+           3D MOUSE MOVEMENT
+        ========================================= */
+
+        const card =
+            document.getElementById("card");
+
+
+        document.addEventListener(
+            "mousemove",
+            function(e) {
+
+                const x =
+                    (window.innerWidth / 2
+                    - e.clientX) / 35;
+
+
+                const y =
+                    (window.innerHeight / 2
+                    - e.clientY) / 35;
+
+
+                card.style.transform =
+
+                    `rotateY(${x}deg)
+                     rotateX(${y}deg)`;
+
+            }
+        );
+
+
+        /* =========================================
+           RESET CARD WHEN MOUSE LEAVES
+        ========================================= */
+
+        document.addEventListener(
+            "mouseleave",
+            function() {
+
+                card.style.transform =
+                    "rotateY(0deg) rotateX(0deg)";
+            }
+        );
+
+
+
+        /* =========================================
+           PARTICLE EXPLOSION
+        ========================================= */
 
         function celebrate() {
 
-            for(let i = 0; i < 40; i++) {
 
-                const particle = document.createElement("div");
+            for (let i = 0; i < 60; i++) {
 
-                particle.style.position = "fixed";
-                particle.style.left = "50%";
-                particle.style.top = "50%";
 
-                particle.style.width = "6px";
-                particle.style.height = "6px";
-                particle.style.borderRadius = "50%";
+                const particle =
+                    document.createElement("div");
 
-                particle.style.background = "white";
+
+                particle.style.position =
+                    "fixed";
+
+
+                particle.style.left =
+                    "50%";
+
+
+                particle.style.top =
+                    "50%";
+
+
+                particle.style.width =
+                    "6px";
+
+
+                particle.style.height =
+                    "6px";
+
+
+                particle.style.borderRadius =
+                    "50%";
+
+
+                particle.style.background =
+                    "white";
+
+
                 particle.style.boxShadow =
                     "0 0 15px #8b5cf6";
 
-                particle.style.zIndex = "100";
 
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 400 + 100;
+                particle.style.zIndex =
+                    "100";
 
-                particle.animate([
+
+                const angle =
+                    Math.random()
+                    * Math.PI * 2;
+
+
+                const distance =
+                    Math.random()
+                    * 500 + 100;
+
+
+                const duration =
+                    Math.random()
+                    * 700 + 700;
+
+
+                particle.animate(
+
+                    [
+
+                        {
+                            transform:
+                                "translate(-50%, -50%) scale(1)",
+
+                            opacity: 1
+                        },
+
+
+                        {
+
+                            transform:
+
+                                `translate(
+                                    ${Math.cos(angle) * distance}px,
+                                    ${Math.sin(angle) * distance}px
+                                )
+                                scale(0)`,
+
+                            opacity: 0
+                        }
+
+                    ],
+
                     {
-                        transform: "translate(-50%, -50%) scale(1)",
-                        opacity: 1
-                    },
-                    {
-                        transform:
-                            `translate(
-                                ${Math.cos(angle) * distance}px,
-                                ${Math.sin(angle) * distance}px
-                            ) scale(0)`,
-                        opacity: 0
+
+                        duration:
+                            duration,
+
+                        easing:
+                            "cubic-bezier(.2,.8,.2,1)"
                     }
-                ], {
-                    duration: 1200,
-                    easing: "cubic-bezier(.2,.8,.2,1)"
-                });
 
-                document.body.appendChild(particle);
+                );
 
-                setTimeout(() => particle.remove(), 1300);
+
+                document.body.appendChild(
+                    particle
+                );
+
+
+                setTimeout(
+
+                    () => particle.remove(),
+
+                    duration + 100
+
+                );
+
             }
 
         }
@@ -443,12 +1080,6 @@
     </script>
 
 </body>
+
 </html>
 ```
-                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-image:
-            inset: 0;
-        .grid {
-        /* Grid */
-
